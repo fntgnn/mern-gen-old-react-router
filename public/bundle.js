@@ -12735,7 +12735,7 @@ var Home = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      var ROOT_URL = 'https://localhost:3000/api/';
+      var ROOT_URL = 'http://localhost:3000/api/';
       _axios2.default.get('' + ROOT_URL).then(function (response) {
         _this2.setState({
           stato: response.data
