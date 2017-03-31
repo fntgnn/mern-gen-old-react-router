@@ -5,6 +5,7 @@ class Param extends Component {
     return(
       <div>
       Param
+      {this.props.params.id}
       </div>
     );
   }

@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-//import { BrowserRouter as Router, Route, Link, Match } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers';
+
+import reduxThunk from 'redux-thunk';
 
 import About from './about';
 import Home from './home';
-import Params from './params';
 import Param from './param';
 import Me from './about/me';
 import ToNona from './about/to_nona';
+import Redux from './redux';
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
+//se aggiorno, mi fa il signout (quasi)
+const token = localStorage.getItem('token');
 
 class App extends Component{
   render(){
@@ -23,14 +33,17 @@ class App extends Component{
 }
 
 ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="about" component={About} >
-        <Route path="me" component={Me} />
-        <Route path="tonona" component={ToNona} />
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="about" component={About} >
+          <Route path="me" component={Me} />
+          <Route path="tonona" component={ToNona} />
+        </Route>
+        <Route path="param/:id" component={Param} />
+        <Route path="redux" component={Redux} />
       </Route>
-      <Route path="param/:id" component={Param} />
-    </Route>
-  </Router>
+    </Router>
+  </Provider>
   , document.getElementById('root'));
