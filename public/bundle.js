@@ -12735,7 +12735,7 @@ var Home = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      var ROOT_URL = 'http://fntgnn-justesting.herokuapp.com/api/';
+      var ROOT_URL = '/api/';
       _axios2.default.get('' + ROOT_URL).then(function (response) {
         _this2.setState({
           stato: response.data
