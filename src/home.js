@@ -11,7 +11,7 @@ class Home extends Component {
   }
 
   componentWillMount(){
-    const ROOT_URL = 'http://localhost:3000/api/';
+    const ROOT_URL = 'http://fntgnn-justesting.herokuapp.com/api/';
     axios.get(`${ROOT_URL}`)
       .then( response => {
         this.setState({
